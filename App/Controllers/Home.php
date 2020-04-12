@@ -8,7 +8,8 @@ class Home extends \Core\Controller
 {
     public function indexAction()
     {
-        View::render('Home/index.php', ['name' => 'John Doe', 'colors' => ['red', 'green', 'blue']]);
+        //View::render('Home/index.php', ['name' => 'John Doe', 'colors' => ['red', 'green', 'blue']]);
+        View::renderTemplate('Home/index.html', ['name' => 'John Doe', 'colors' => ['red', 'green', 'blue']]);
     }
 
     protected function before()

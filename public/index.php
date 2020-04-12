@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Autoload composer dependencies
+ */
+require __DIR__ . '/../vendor/autoload.php';
+
+
+/**
  * Classes Autoloader
  */
 spl_autoload_register(function ($class) {
