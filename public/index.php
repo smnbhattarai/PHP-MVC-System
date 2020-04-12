@@ -1,20 +1,25 @@
 <?php
 
 /**
- * Front Controller
+ * Classes Autoloader
  */
+spl_autoload_register(function ($class) {
+    $root = dirname(__DIR__);
+    $file = $root . '/' . str_replace('\\', '/', $class) . '.php';
+    if (is_readable($file)) {
+        require $root . '/' . str_replace('\\', '/', $class) . '.php';
+    }
+});
 
-//echo 'Request URL = ' . $_SERVER['QUERY_STRING'];
-
-require_once '../Core/Router.php';
-require_once '../App/Controllers/Posts.php';
-
-$router = new Router();
+/**
+ * Routing
+ */
+$router = new \Core\Router();
 
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
+$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);
