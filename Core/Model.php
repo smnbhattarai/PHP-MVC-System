@@ -21,6 +21,9 @@ class Model
 
                 $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
 
+                // Throw an Exception when an error occurs
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             } catch (\PDOException $e) {
                 echo $e->getMessage();
             }
